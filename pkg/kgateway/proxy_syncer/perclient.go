@@ -3,7 +3,7 @@ package proxy_syncer
 import (
 	"fmt"
 	"maps"
-	"sort"
+	"slices"
 
 	envoyclusterv3 "github.com/envoyproxy/go-control-plane/envoy/config/cluster/v3"
 	envoyendpointv3 "github.com/envoyproxy/go-control-plane/envoy/config/endpoint/v3"
@@ -387,7 +387,7 @@ func findMissingReferencedClusters(
 		}
 		missingClusters = append(missingClusters, name)
 	}
-	sort.Strings(missingClusters)
+	slices.Sort(missingClusters)
 
 	return missingClusters
 }
@@ -422,7 +422,7 @@ func findMissingReferencedEndpointResources(
 		}
 		missingEndpointClusters = append(missingEndpointClusters, name)
 	}
-	sort.Strings(missingEndpointClusters)
+	slices.Sort(missingEndpointClusters)
 
 	return missingEndpointClusters
 }
