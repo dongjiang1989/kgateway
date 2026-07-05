@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"sort"
+	"slices"
 	"strings"
 	"testing"
 
@@ -46,7 +46,7 @@ func TestAllE2ETestsInShards(t *testing.T) {
 	}
 
 	if len(missing) > 0 {
-		sort.Strings(missing)
+		slices.Sort(missing)
 		t.Errorf("E2E tests not covered by e2e.yaml:\n  %s\n\nUpdate .github/workflows/e2e.yaml to include these tests",
 			strings.Join(missing, "\n  "))
 	}
@@ -158,7 +158,7 @@ func discoverE2ETestPaths(t *testing.T) []string {
 		}
 	}
 
-	sort.Strings(paths)
+	slices.Sort(paths)
 	return paths
 }
 
